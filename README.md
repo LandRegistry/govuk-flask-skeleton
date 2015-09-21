@@ -1,39 +1,66 @@
-# govuk-flask-skeleton
+# GOV.UK-flask-skeleton
 
-## Testing
+This is a template project for building frontends using the gov.uk toolkit using flask.
 
-### Running the Tests
+### Contents
 
-All of the acceptance tests are contained within the acceptance-tests folder with the feature files under the features folder and the step-definitions under the steps folder.
+- [Usage](#usage)
+- [Getting Started](#getting-started)
+- [Acceptance Tests](#acceptance-tests)
+- [Code Style Checking](#code-style-checking)
 
-If you would like to run all of the acceptance tests then navigate into the acceptance-tests folder and run the following command:
-
-```
-./run_tests.sh
-```
-
-You can also pass arguments to this command as you would if you were just running cucumber on it's own.
-
-For example you can use the following command to display a cut down version of cucumbers progress when it is running:
+## Usage
 
 ```
-./run_tests.sh --format progress
+get     /helloworld                 # test endpoint for the app
 ```
 
-Or you can use the following to run only the scenarios that have been tagged with whatever tags you specify:
+## Getting Started
+1. Clone the repo
 
+2. Get the GOV.UK toolkit submodule
+    ```
+    git submodule update --init
+    ```
+
+3. In the directory enter the command
+    ```
+    pip install -r requirements.txt
+    ```
+
+4. To run the application run the command
+    ```
+    python run.py runserver
+    ```
+    
+## Acceptance Tests
+
+- Standard way
 ```
-/run_tests.sh --tags @USXX
+./acceptance-tests/run_tests.sh
 ```
 
-### Running Rubocop
-
-Rubocop is ruby gem that will check any ruby code in the repository against the ruby style guide and then provide a report of any offenses.
-
-In order to run Rubocop on the acceptance test code then navigate into the acceptance test folder and run the command:
-
+- Cut down version of output
 ```
-./run_linting.sh
+./acceptance-tests/run_tests.sh --format progress
 ```
 
-If you wish to amend what cops are used, what files are ignored when running Rubocop then you will need to put this in the rubocop.yml file.
+- Only run test with specific tag
+```
+./acceptance-tests/run_tests.sh --tags @USXX
+```
+
+### Code Style Checking
+
+1. App
+
+    ```
+    flake8 .
+    ```
+    > Requires flake8, install with ```pip install flake8```
+
+2. Acceptance tests
+    
+    ```
+    ./acceptance-tests/run_linting.sh
+    ```
